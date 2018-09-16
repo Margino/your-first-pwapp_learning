@@ -45,3 +45,15 @@ self.addEventListener('activate', (e) => {
   );
   return self.clients.claim(); //fixes a corner case in which the app wasn't returning the latest data
 });
+
+self.addEventListener('fetch', (e) => {
+    console.log('[Service worker] Fetch', e.request.url);
+    e.respondWith(
+        // caches.match() evaluates the web request that triggered the fetch event, and checks to see if it's available in the cache
+        caches.match(e.request)
+            .then((response) => {
+                // responds with the cached version, or uses fetch to get a copy from the network
+                return response || fetch(e.request);
+            })
+    );
+});
