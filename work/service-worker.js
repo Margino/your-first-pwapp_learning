@@ -1,5 +1,5 @@
 const cacheName = 'weatherPWA-step-6-1';
-const dataCacheName = 'weatherData-v1';
+const dataCacheName = 'weatherData-v2';
 const filesToCache = [
     '/',
     '/index.html',
